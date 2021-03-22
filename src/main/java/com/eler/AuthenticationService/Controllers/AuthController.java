@@ -20,4 +20,9 @@ public class AuthController {
         return auth.Register(email,password);
     }
 
+    @RequestMapping("/login/{email}/{password}")
+    public TeacherAccount Login(@PathVariable("email") String email, @PathVariable("password") String password) {
+        return auth.Authenticate(email, password);
+    }
+
 }

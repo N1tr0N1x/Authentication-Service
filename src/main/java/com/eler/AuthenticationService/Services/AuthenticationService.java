@@ -4,7 +4,6 @@ import com.eler.AuthenticationService.Models.TeacherAccount;
 import com.eler.AuthenticationService.Repositories.TeacherAccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,16 +13,19 @@ public class AuthenticationService {
     TeacherAccountRepository teacherAccRepo;
 
 
-    public void Authenticate(String email,String password){
+    public TeacherAccount Authenticate(String email,String password){
         TeacherAccount teacher = teacherAccRepo.findByEmail(email);
         if(teacher != null){
-            if(teacher.getPassword() == password){
+            if(teacher.getPassword().equals(password)){
                 //LOGGED
+                return teacher;
             }else{
                 //PASSWORD NOT MATCH
+                return null;
             }
         }else{
             //EMAIL NOT REGISTRED
+            return null;
         }
     }
 
