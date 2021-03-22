@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "TeacherAccounts")
 public class TeacherAccount {
@@ -35,6 +36,20 @@ public class TeacherAccount {
     }
 
     public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public TeacherAccount(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public TeacherAccount() {
+    }
+
+    public TeacherAccount(int id, String email, String password) {
+        this.id = id;
+        this.email = email;
         this.password = password;
     }
 

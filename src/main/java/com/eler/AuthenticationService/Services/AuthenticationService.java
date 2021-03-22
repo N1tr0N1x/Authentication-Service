@@ -4,7 +4,10 @@ import com.eler.AuthenticationService.Models.TeacherAccount;
 import com.eler.AuthenticationService.Repositories.TeacherAccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthenticationService {
     
     @Autowired
@@ -24,12 +27,11 @@ public class AuthenticationService {
         }
     }
 
-
-    public void Register(String email,String password){
-        TeacherAccount teacher = new TeacherAccount();
-        teacher.setEmail(email);
-        teacher.setPassword(password);
+    public TeacherAccount Register(String email,String password){
+        TeacherAccount teacher = new TeacherAccount(email,password);
         
         teacherAccRepo.save(teacher);
+
+        return teacher;
     }
 }
