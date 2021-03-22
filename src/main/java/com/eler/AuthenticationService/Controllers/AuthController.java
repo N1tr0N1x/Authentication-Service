@@ -1,6 +1,6 @@
 package com.eler.AuthenticationService.Controllers;
 
-import com.eler.AuthenticationService.Models.TeacherAccount;
+import com.eler.AuthenticationService.Models.UserAccount;
 import com.eler.AuthenticationService.Services.AuthenticationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +16,18 @@ public class AuthController {
     AuthenticationService auth;
 
     @RequestMapping("/register/{email}/{password}")
-    public TeacherAccount Register(@PathVariable("email") String email, @PathVariable("password") String password){
+    public UserAccount Register(@PathVariable("email") String email, @PathVariable("password") String password){
         return auth.Register(email,password);
     }
 
     @RequestMapping("/login/{email}/{password}")
-    public TeacherAccount Login(@PathVariable("email") String email, @PathVariable("password") String password) {
+    public UserAccount Login(@PathVariable("email") String email, @PathVariable("password") String password) {
         return auth.Authenticate(email, password);
+    }
+
+    @RequestMapping("/getUser/{email}")
+    public UserAccount getUserByEmail(@PathVariable("email") String email) {
+        return auth.getUserByEmail(email);
     }
 
 }

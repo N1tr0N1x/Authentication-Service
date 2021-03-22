@@ -1,7 +1,7 @@
 package com.eler.AuthenticationService.Services;
 
-import com.eler.AuthenticationService.Models.TeacherAccount;
-import com.eler.AuthenticationService.Repositories.TeacherAccountRepository;
+import com.eler.AuthenticationService.Models.UserAccount;
+import com.eler.AuthenticationService.Repositories.UserAccountRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
     
     @Autowired
-    TeacherAccountRepository teacherAccRepo;
+    UserAccountRepository UserAccRepo;
 
 
-    public TeacherAccount Authenticate(String email,String password){
-        TeacherAccount teacher = teacherAccRepo.findByEmail(email);
-        if(teacher != null){
-            if(teacher.getPassword().equals(password)){
+    public UserAccount Authenticate(String email,String password){
+        UserAccount user = UserAccRepo.findByEmail(email);
+        if(user != null){
+            if(user.getPassword().equals(password)){
                 //LOGGED
-                return teacher;
+                return user;
             }else{
                 //PASSWORD NOT MATCH
                 return null;
@@ -29,11 +29,14 @@ public class AuthenticationService {
         }
     }
 
-    public TeacherAccount Register(String email,String password){
-        TeacherAccount teacher = new TeacherAccount(email,password);
+    public UserAccount Register(String email,String password){
+        UserAccount user = new UserAccount(email,password);
         
-        teacherAccRepo.save(teacher);
+        UserAccRepo.save(user);
+        return user;
+    }
 
-        return teacher;
+    public UserAccount getUserByEmail(String email){
+        return UserAccRepo.findByEmail(email);
     }
 }

@@ -9,13 +9,13 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "TeacherAccounts")
-public class TeacherAccount {
+@Table(name = "UserAccounts")
+public class UserAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private int id;
+    @Column(name = "idUser")
+    private int idUser;
 
     @Column(name = "email")
     private String email;
@@ -39,19 +39,20 @@ public class TeacherAccount {
         this.password = password;
     }
 
-    public TeacherAccount(String email, String password) {
+    public UserAccount(String email, String password) {
         this.email = email;
         this.password = password;
     }
 
-    public TeacherAccount() {
+    public UserAccount() {
     }
 
-    public TeacherAccount(int id, String email, String password) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
+    public int getIdUser() {
+        return idUser;
     }
 
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
     
 }
