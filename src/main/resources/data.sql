@@ -1,1 +1,1 @@
-REPLACE INTO user_accounts (id_user,email,password) VALUES (0,'admin','admin');
+REPLACE INTO user_accounts (id_user,email,password) VALUES (0,'admin@admin','admin');
