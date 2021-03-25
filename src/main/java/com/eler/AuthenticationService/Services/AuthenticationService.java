@@ -51,4 +51,8 @@ public class AuthenticationService {
         if(logged) return user;
         else return null;
     }
+
+    public void delete(int idUser) {
+        UserAccRepo.deleteById(idUser);
+    }
 }
