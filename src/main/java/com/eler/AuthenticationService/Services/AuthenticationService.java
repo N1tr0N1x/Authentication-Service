@@ -12,13 +12,22 @@ public class AuthenticationService {
     @Autowired
     UserAccountRepository UserAccRepo;
 
+    @Autowired
+    UserAccount user = new UserAccount();
+
+    boolean logged = false;
 
     public UserAccount Authenticate(String email,String password){
-        UserAccount user = UserAccRepo.findByEmail(email);
-        if(user != null){
-            if(user.getPassword().equals(password)){
+        UserAccount _user = UserAccRepo.findByEmail(email);
+        if(_user != null){
+            if(_user.getPassword().equals(password)){
                 //LOGGED
-                return user;
+                if(user.getIdUser()==0){
+                    //LOGGED AS ADMIN
+                }
+                logged = true;
+                user = _user;
+                return _user;
             }else{
                 //PASSWORD NOT MATCH
                 return null;
@@ -29,14 +38,17 @@ public class AuthenticationService {
         }
     }
 
-    public UserAccount Register(String email,String password){
-        UserAccount user = new UserAccount(email,password);
-        
+    public UserAccount Register(UserAccount user){
         UserAccRepo.save(user);
         return user;
     }
 
     public UserAccount getUserByEmail(String email){
         return UserAccRepo.findByEmail(email);
+    }
+
+    public UserAccount getCurrentUser() {
+        if(logged) return user;
+        else return null;
     }
 }
