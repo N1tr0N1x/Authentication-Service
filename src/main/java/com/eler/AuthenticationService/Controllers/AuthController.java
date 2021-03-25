@@ -25,9 +25,9 @@ public class AuthController {
         return auth.Register(user);
     }
 
-    @RequestMapping("/login/{email}/{password}")
-    public UserAccount Login(@PathVariable("email") String email, @PathVariable("password") String password) {
-        return auth.Authenticate(email, password);
+    @PostMapping("/login")
+    public UserAccount Login(@RequestBody UserAccount user) {
+        return auth.Authenticate(user);
     }
 
     @RequestMapping("/getUser/{email}")

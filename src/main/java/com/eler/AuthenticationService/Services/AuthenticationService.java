@@ -3,6 +3,7 @@ package com.eler.AuthenticationService.Services;
 import com.eler.AuthenticationService.Models.UserAccount;
 import com.eler.AuthenticationService.Repositories.UserAccountRepository;
 
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +18,10 @@ public class AuthenticationService {
 
     boolean logged = false;
 
-    public UserAccount Authenticate(String email,String password){
-        UserAccount _user = UserAccRepo.findByEmail(email);
+    public UserAccount Authenticate(UserAccount user){
+        UserAccount _user = UserAccRepo.findByEmail(user.getEmail());
         if(_user != null){
-            if(_user.getPassword().equals(password)){
+            if(_user.getPassword().equals(user.getPassword())){
                 //LOGGED
                 if(user.getIdUser()==0){
                     //LOGGED AS ADMIN
