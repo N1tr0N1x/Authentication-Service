@@ -56,4 +56,8 @@ public class AuthenticationService {
     public void delete(int idUser) {
         UserAccRepo.deleteById(idUser);
     }
+
+    public UserAccount getUserById(int idUser) {
+        return UserAccRepo.findByIdUser(idUser);
+    }
 }

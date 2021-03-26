@@ -46,4 +46,8 @@ public class AuthController {
         auth.delete(id);
     }
 
+    @RequestMapping("/getUserById/{idUser}")
+    public UserAccount getUserById(@PathVariable("idUser") int idUser) {
+        return auth.getUserById(idUser);
+    }
 }
